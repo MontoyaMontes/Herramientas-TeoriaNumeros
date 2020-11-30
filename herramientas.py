@@ -1,7 +1,5 @@
 '''
-Montoya Montes Pedro - 31219536-2
-Programa para calcular el orden_m(a) con el algoritmo visto en clase y como 
-bonús la función phi(n).
+Montoya Montes Pedro 
 
 LEER!: El programa usa codificación UNICODE para mostrar símbolos e 
 imprimir más bonito, el programa está diseñado para que incluso si no soporta
@@ -18,12 +16,11 @@ V 1.4, calculador raíces primitivas
 -- Modificado esquema de main y orden
 V 1.4.1, modificado calculo de phi(n) y orden (ahora necesita pre calcular phi(m) como parámetro)
 		debido a un bug (aún sin saber exactamente el origne) donde al calcular orden y raíces,
-		phi(m) calculaba varias veces su valor
+		phi(m) calculaba varias veces su valor.
+V 1.5 Agregado calculo de índices y limpieza de código.
 
 Por agregar: calculo gcd, lcd
-Agregar índices
-
-cambiar nombre, ya no es un programa de orden
+Cambiar idioma a inglés.
 '''
 
 from math import gcd #Importamos la biblioteca gcd directa de python 
@@ -69,17 +66,12 @@ def orden(a, m, phi_m):
 	if gcd(a,m) != 1:
 		print("No se puede, (a,m) no son primos relativos", a,m)
 		sys.exit()
-	# Una vez aquí, calculamos phi(m) e imprimimos.
-	#phi_m=0
-	#pri_m=phi(m)
-	#print("++++++++++",phi_m)
 	#Ahora ciclamos con las potencias.
 	pot=1
 	while pot<=phi_m: #Usamos el teorema de que Ord_m(a)<=phi(m)
 		if (phi_m%pot) != 0 : #Usamos el teorema de que ord_m(a)|phi(m)
 			pot=pot+1
 		r=(a**pot)
-		#print(r)
 		if r%m==1:	#Si el módulo de a^m=1, acabamos y encontramos solución (r).
 			return (pot,r)
 		pot=pot+1 
@@ -88,7 +80,6 @@ def indice(a,m,g):
 	k=1 #Cambiar por multiplicacion para que sea menos operaciones
 	while 1:
 		if a == ((g**k)%m):
-			print("Ind",subscript(g),"(",a,") =",k)
 			return k
 		k = k+1
 
@@ -132,8 +123,6 @@ def main():
 		orden1 = soluciones[0]
 		r = soluciones[1]
 		print("Ord",subscript(m),"(",a,")=",orden1)
-		#total_raices=phi(phi_m)
-		#print(m," tiene ",total_raices)
 		if phi_m==orden1:
 			print("Sí es ráiz primitiva ya que  Ord",subscript(m),"(",a,")=","\u03D5(",phi_m,")")
 			return
@@ -150,16 +139,9 @@ def main():
 
 		raices = []
 		posible_raiz = 1
-		#i = 1
 		while len(raices) < total_raices and posible_raiz < m: # and i < total_raices:
-			#print("Posible raíz=",posible_raiz)
-			#soluciones = orden(x,m)
 			while gcd(posible_raiz,m) != 1 and posible_raiz < m:
-			#	pass
-			#if(gcd(posible_raiz,m) != 1):
 				posible_raiz = posible_raiz+1
-		#		i = i+1
-			#print("a=",posible_raiz)	
 			orden1 = orden(posible_raiz,m,phi_m)[0]
 			if phi_m==orden1:
 				print(posible_raiz, "es ráiz primitiva ya que Ord",subscript(m),"(",posible_raiz,")=","\u03D5(",m,") = ",phi_m)
@@ -171,9 +153,8 @@ def main():
 			return
 		print("Las raíces de ",m, "son:")
 		print(raices)
-		#i = i+1
 		return
-	'''	
+	
 	elif opcion == 5:
 		print("\n")
 		valor1 = input("Introduce el valor a: ")
@@ -182,7 +163,8 @@ def main():
 		a = int(valor1)
 		m = int(valor2)
 		g = int(valor3)
-	'''
+		#Add full operation
+		print("Ind",subscript(g),"(",a,") =",indice(a,m,g))
 	else:
 		print("\n")
 		print("Gracias por usar este programa uwu")
@@ -191,20 +173,6 @@ def main():
 main()
 
 '''
-orden(2,5)
-print("------")
-orden(8,9)
-print("------")
-orden(7,15)
-print("------")
-orden(21,125)
-print("------")
-orden(2,7)
-
-
-# indice(a,m,g):
-indice(5,11,7)
-indice(4,13,6)
-indice(35,38,21)
+indice(a,m,g):
 indice(2,125,13)
 '''
