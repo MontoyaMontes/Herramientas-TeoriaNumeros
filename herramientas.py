@@ -19,8 +19,14 @@ V 1.4.1, modificado calculo de phi(n) y orden (ahora necesita pre calcular phi(m
 		phi(m) calculaba varias veces su valor.
 V 1.5 Agregado calculo de índices y limpieza de código.
 
+V 1.6 Agregado calculo de residuo cuadrático y mejora ligera en menú
+
 Por agregar: calculo gcd, lcd
 Cambiar idioma a inglés.
+Cambiar/mejorar menú de selección
+Cambiar doc
+Agregar comentarios
+agregar comprobación de residuo cuadrático (con a^(p-1/2) congr 1 mod m)
 '''
 
 from math import gcd #Importamos la biblioteca gcd directa de python 
@@ -83,13 +89,39 @@ def indice(a,m,g):
 			return k
 		k = k+1
 
+def residuo_cuadratico(m):
+	x = set([])
+	for k in range(1,m):
+		n=(k**2)%m
+		print(k,superscript(2),"\u2261",n,"módulo",m)
+		x.add(n)
+	return x
+
+def comprobar_residuo_euler(a,m):
+	n=(m-1)/2
+	if (a**n)%m == 1 :
+		return True
+	return False
+
+def residuo_cuadratico_euler(m):
+	x = set([])
+	pot = (m-1)//2
+	for k in range(1,m):
+		if comprobar_residuo_euler(k,m):
+			print(k,superscript(pot),"\u2261 1")
+			x.add(k)
+	print(x)		
 
 '''
 	El main.
 '''
+
 def main():
 	print("Programa para calcular \u03D5(n) y Ord\u2098(a)\n")
-	print("Lista de opciones:\n 1) Calcular \u03D5(n) \n 2) Calcular Ord\u2098(a) \n 3) Comprobar ráiz primitiva\n 4) Salir")
+	print("Lista de opciones:\n 1) Calcular \u03D5(n) \n 2) Calcular Ord\u2098(a)" )
+	print(" 3) Comprobar ráiz primitiva\n 4) Calcular raíces primitivas") 
+	print(" 5) Calcular indice\n 6) Calcular residuo cuadrático \n 7) Salir")
+
 	operacion = input("Ingrese el número de la operación a realizar:")
 	opcion =int(operacion)
 	if opcion == 1:
@@ -165,14 +197,37 @@ def main():
 		g = int(valor3)
 		#Add full operation
 		print("Ind",subscript(g),"(",a,") =",indice(a,m,g))
+	elif opcion == 6:
+		print("\n")
+		valor = input("Introduce el valor m: ")
+		m = int(valor)
+		print(residuo_cuadratico(m))
+	elif opcion == 7:
+		return
+	elif opcion == 8:
+		return
 	else:
 		print("\n")
 		print("Gracias por usar este programa uwu")
 		return	
 
-main()
+#main()
 
 '''
 indice(a,m,g):
 indice(2,125,13)
+'''
+
+#residuo_cuadratico(13)
+#residuo_cuadratico_euler(19)
+#residuo_cuadratico_euler(37)
+residuo_cuadratico_euler(101)
+
+
+
+'''
+print(comprobar_residuo_euler(10,11))
+print(comprobar_residuo_euler(2,17))
+print(comprobar_residuo_euler(11,29))
+print(comprobar_residuo_euler(5,41))
 '''
