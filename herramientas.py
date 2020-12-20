@@ -27,6 +27,7 @@ Cambiar/mejorar menú de selección
 Cambiar doc
 Agregar comentarios
 agregar comprobación de residuo cuadrático (con a^(p-1/2) congr 1 mod m)
+agregar reeadme
 '''
 
 from math import gcd #Importamos la biblioteca gcd directa de python 
@@ -272,65 +273,3 @@ def main():
 		return	
 
 main()
-
-'''
-indice(a,m,g):
-indice(2,125,13)
-'''
-
-#residuo_cuadratico(11)
-#residuo_cuadratico(23)
-
-#residuo_cuadratico_euler(19)
-#residuo_cuadratico_euler(37)
-#residuo_cuadratico_euler(101)
-
-
-
-'''
-print(comprobar_residuo_euler(10,11))
-print(comprobar_residuo_euler(2,17))
-print(comprobar_residuo_euler(11,29))
-print(comprobar_residuo_euler(5,41))
-'''
-#print(comprobar_residuo_euler(3,11))
-
-#simbolo_legendre_gauss(5,23)
-#simbolo_legendre_gauss(15,17)
-
-#simbolo_legendre_gauss(491,37)
-#simbolo_legendre_gauss(10,37)
-#simbolo_legendre_gauss(2,101)
-#simbolo_legendre_gauss(3,3)
-#simbolo_legendre_gauss(3,5)
-#simbolo_legendre_gauss(5,3)
-
-#simbolo_legendre_gauss(989,43)
-
-#print(comprobar_residuo_euler(2,15))
-#residuo_cuadratico(15)
-#simbolo_legendre_gauss(2,3)
-'''
-suma_dos_cuadrados("a",130)
-
-suma_dos_cuadrados("b",260)
-
-suma_dos_cuadrados("c",847)
-
-suma_dos_cuadrados("d",980)
-
-suma_dos_cuadrados("e",1073)
-
-print(1073%4)
-'''
-#suma_dos_cuadrados("a",35)
-
-'''
-def find_p_quadratic_residue(q):
-	for x in range(1,100):
-		print(x)
-		if(q**)
-
-
-find_p_quadratic_residue(1)				
-'''
