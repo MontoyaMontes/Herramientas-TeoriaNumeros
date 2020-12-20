@@ -31,6 +31,9 @@ agregar comprobación de residuo cuadrático (con a^(p-1/2) congr 1 mod m)
 
 from math import gcd #Importamos la biblioteca gcd directa de python 
 import sys
+
+import math
+
 '''
 	Método que, dado un entero n, regresa su representación como superíndice.
 	Entrada: un entero n.
@@ -110,10 +113,56 @@ def residuo_cuadratico_euler(m):
 		if comprobar_residuo_euler(k,m):
 			print(k,superscript(pot),"\u2261 1")
 			x.add(k)
+#	return (x)
 	print(x)		
 
+
+def simbolo_legendre_gauss(a,p):
+	n=(p-1)//2
+	print(n)
+	v=0
+	lista_residuos=[]
+	residuos_mayores_p=()
+	for k in range(1,n+1):
+		#print("k*a%p=",k*a%p)
+		lista_residuos.append(k*a%p)
+		if (k*a)%p > n:
+			v = v+1
+
+	print(v)
+	print(lista_residuos)
+	legendre = (-1)**v
+	if v == 0:
+		print(0)	
+		return
+	print(legendre)
+
+def factorial_rec(n):
+	if n == 1:
+	   return n
+	else:
+	   return n*factorial_rec(n-1)
+	#print (recur_factorial(int(num)))
+
+def suma_dos_cuadrados(a,n):
+	if (n%4) == 3:
+		return -1
+	pot2 = superscript(2)	
+	sqr_n = math.floor(math.sqrt(n))
+	#print(sqr_n)
+	x = 1	
+	while sqr_n > 1:
+		while x < n:			
+			if (sqr_n**2)+ x**2 == n:
+				print("{}){}{}+{}{}={}".format(a,sqr_n,pot2,x,pot2,n))
+			x += 1 
+		sqr_n -= 1
+		#for x in xrange(1,10):
+			
+
+
 '''
-	El main.
+	############ Main.#################
 '''
 
 def main():
@@ -136,7 +185,9 @@ def main():
 		valor2 = input("Introduce el valor m: ")
 		a = int(valor1)
 		m = int(valor2)
-		soluciones = orden(a,m) #Agregado para evitar hacer más calculos a futuro
+
+		phi_m = phi(m)		
+		soluciones = orden(a,m,phi_m) #Agregado para evitar hacer más calculos a futuro
 		print("\u03D5(",m,")=",phi(m))
 		orden1 = soluciones[0]
 		r = soluciones[1]
@@ -185,6 +236,15 @@ def main():
 			return
 		print("Las raíces de ",m, "son:")
 		print(raices)
+
+		for primer_raiz in raices:
+
+			for raiz in raices:
+				#print(raiz,m)
+				if (raiz*primer_raiz)%m == 1:
+					print("r=",(raiz*primer_raiz)%m)
+
+
 		return
 	
 	elif opcion == 5:
@@ -211,17 +271,19 @@ def main():
 		print("Gracias por usar este programa uwu")
 		return	
 
-#main()
+main()
 
 '''
 indice(a,m,g):
 indice(2,125,13)
 '''
 
-#residuo_cuadratico(13)
+#residuo_cuadratico(11)
+#residuo_cuadratico(23)
+
 #residuo_cuadratico_euler(19)
 #residuo_cuadratico_euler(37)
-residuo_cuadratico_euler(101)
+#residuo_cuadratico_euler(101)
 
 
 
@@ -230,4 +292,45 @@ print(comprobar_residuo_euler(10,11))
 print(comprobar_residuo_euler(2,17))
 print(comprobar_residuo_euler(11,29))
 print(comprobar_residuo_euler(5,41))
+'''
+#print(comprobar_residuo_euler(3,11))
+
+#simbolo_legendre_gauss(5,23)
+#simbolo_legendre_gauss(15,17)
+
+#simbolo_legendre_gauss(491,37)
+#simbolo_legendre_gauss(10,37)
+#simbolo_legendre_gauss(2,101)
+#simbolo_legendre_gauss(3,3)
+#simbolo_legendre_gauss(3,5)
+#simbolo_legendre_gauss(5,3)
+
+#simbolo_legendre_gauss(989,43)
+
+#print(comprobar_residuo_euler(2,15))
+#residuo_cuadratico(15)
+#simbolo_legendre_gauss(2,3)
+'''
+suma_dos_cuadrados("a",130)
+
+suma_dos_cuadrados("b",260)
+
+suma_dos_cuadrados("c",847)
+
+suma_dos_cuadrados("d",980)
+
+suma_dos_cuadrados("e",1073)
+
+print(1073%4)
+'''
+#suma_dos_cuadrados("a",35)
+
+'''
+def find_p_quadratic_residue(q):
+	for x in range(1,100):
+		print(x)
+		if(q**)
+
+
+find_p_quadratic_residue(1)				
 '''
