@@ -32,7 +32,7 @@ agregar reeadme
 
 from math import gcd #Importamos la biblioteca gcd directa de python 
 import sys
-
+import os
 import math
 
 '''
@@ -82,7 +82,7 @@ def orden(a, m, phi_m):
 		if (phi_m%pot) != 0 : #Usamos el teorema de que ord_m(a)|phi(m)
 			pot=pot+1
 		r=(a**pot)
-		if r%m==1:	#Si el módulo de a^m=1, acabamos y encontramos solución (r).
+		if r%m==1:  #Si el módulo de a^m=1, acabamos y encontramos solución (r).
 			return (pot,r)
 		pot=pot+1 
 
@@ -114,8 +114,8 @@ def residuo_cuadratico_euler(m):
 		if comprobar_residuo_euler(k,m):
 			print(k,superscript(pot),"\u2261 1")
 			x.add(k)
-#	return (x)
-	print(x)		
+#   return (x)
+	print(x)        
 
 
 def simbolo_legendre_gauss(a,p):
@@ -134,7 +134,7 @@ def simbolo_legendre_gauss(a,p):
 	print(lista_residuos)
 	legendre = (-1)**v
 	if v == 0:
-		print(0)	
+		print(0)    
 		return
 	print(legendre)
 
@@ -148,12 +148,12 @@ def factorial_rec(n):
 def suma_dos_cuadrados(a,n):
 	if (n%4) == 3:
 		return -1
-	pot2 = superscript(2)	
+	pot2 = superscript(2)   
 	sqr_n = math.floor(math.sqrt(n))
 	#print(sqr_n)
-	x = 1	
+	x = 1   
 	while sqr_n > 1:
-		while x < n:			
+		while x < n:            
 			if (sqr_n**2)+ x**2 == n:
 				print("{}){}{}+{}{}={}".format(a,sqr_n,pot2,x,pot2,n))
 			x += 1 
@@ -161,115 +161,133 @@ def suma_dos_cuadrados(a,n):
 		#for x in xrange(1,10):
 			
 
+def check_operation(operation):
+	if not(operation.isdigit()):
+		return -1
+	else:
+		return int(operation)
+
+def menu():
+#	os.system('clear') # NOTA para windows tienes que cambiar clear por cls
+	print("Programa para hacer calculos de teoría de números:\n")
+	print("Lista de opciones:")
+	print("\t1) Calcular \u03D5(n)")  
+	print("\t2) Calcular Ord\u2098(a)" )
+	print("\t3) Comprobar ráiz primitiva") 
+	print("\t4) Calcular raíces primitivas") 
+	print("\t5) Calcular indice")
+	print("\t6) Calcular residuo cuadrático") 
+	print("\t7) Salir") 
+
 
 '''
 	############ Main.#################
 '''
-
 def main():
-	print("Programa para calcular \u03D5(n) y Ord\u2098(a)\n")
-	print("Lista de opciones:\n 1) Calcular \u03D5(n) \n 2) Calcular Ord\u2098(a)" )
-	print(" 3) Comprobar ráiz primitiva\n 4) Calcular raíces primitivas") 
-	print(" 5) Calcular indice\n 6) Calcular residuo cuadrático \n 7) Salir")
 
-	operacion = input("Ingrese el número de la operación a realizar:")
-	opcion =int(operacion)
-	if opcion == 1:
-		print("\n")
-		valor_phi = input("Introduce el valor n: ")
-		n = int(valor_phi)
-		print(phi(n))
-		return
-	elif opcion == 2:
-		print("\n")
-		valor1 = input("Introduce el valor a: ")
-		valor2 = input("Introduce el valor m: ")
-		a = int(valor1)
-		m = int(valor2)
 
-		phi_m = phi(m)		
-		soluciones = orden(a,m,phi_m) #Agregado para evitar hacer más calculos a futuro
-		print("\u03D5(",m,")=",phi(m))
-		orden1 = soluciones[0]
-		r = soluciones[1]
-		print(a,superscript(orden1),"=",r,"\u2261",r%m,"( mód",m,")")
-		print("Ord",subscript(m),"(",a,")=",orden1)
-		return
-	elif opcion	== 3:
-		print("\n")
-		valor1 = input("Introduce el valor a: ")
-		valor2 = input("Introduce el valor m: ")
-		a = int(valor1)
-		m = int(valor2)
-		phi_m = phi(m)
+	while True:
+		menu()
+		operacion = input("Ingrese el número de la operación a realizar:")
+		opcion = check_operation(operacion)
+		if opcion == 1:
+			print("\n")
+			valor_phi = input("Introduce el valor n: ")
+			n = int(valor_phi)
+			print(phi(n))
+			#return
+		elif opcion == 2:
+			print("\n")
+			valor1 = input("Introduce el valor a: ")
+			valor2 = input("Introduce el valor m: ")
+			a = int(valor1)
+			m = int(valor2)
 
-		soluciones = orden(a,m,phi_m) #Agregado para evitar hacer más calculos a futuro
-		orden1 = soluciones[0]
-		r = soluciones[1]
-		print("Ord",subscript(m),"(",a,")=",orden1)
-		if phi_m==orden1:
-			print("Sí es ráiz primitiva ya que  Ord",subscript(m),"(",a,")=","\u03D5(",phi_m,")")
-			return
-		print("No es ráiz primitiva")
-		return
-	elif opcion == 4:
-		print("\n")
-		valor = input("Introduce el valor m: ")
-		m = int(valor)
-		phi_m =phi(m)
-		total_raices=phi(phi_m)
-		print(m," tiene ",total_raices, "posibles raíces primitivas")
-		print("\u03D5(",m,")=",phi_m)
+			phi_m = phi(m)      
+			soluciones = orden(a,m,phi_m) #Agregado para evitar hacer más calculos a futuro
+			print("\u03D5(",m,")=",phi(m))
+			orden1 = soluciones[0]
+			r = soluciones[1]
+			print(a,superscript(orden1),"=",r,"\u2261",r%m,"( mód",m,")")
+			print("Ord",subscript(m),"(",a,")=",orden1)
+			#return
+		elif opcion == 3:
+			print("\n")
+			valor1 = input("Introduce el valor a: ")
+			valor2 = input("Introduce el valor m: ")
+			a = int(valor1)
+			m = int(valor2)
+			phi_m = phi(m)
 
-		raices = []
-		posible_raiz = 1
-		while len(raices) < total_raices and posible_raiz < m: # and i < total_raices:
-			while gcd(posible_raiz,m) != 1 and posible_raiz < m:
-				posible_raiz = posible_raiz+1
-			orden1 = orden(posible_raiz,m,phi_m)[0]
+			soluciones = orden(a,m,phi_m) #Agregado para evitar hacer más calculos a futuro
+			orden1 = soluciones[0]
+			r = soluciones[1]
+			print("Ord",subscript(m),"(",a,")=",orden1)
 			if phi_m==orden1:
-				print(posible_raiz, "es ráiz primitiva ya que Ord",subscript(m),"(",posible_raiz,")=","\u03D5(",m,") = ",phi_m)
-				raices.append(posible_raiz)
-			posible_raiz = posible_raiz +1
+				print("Sí es ráiz primitiva ya que  Ord",subscript(m),"(",a,")=","\u03D5(",phi_m,")")
+				return
+			print("No es ráiz primitiva")
+			#return
+		elif opcion == 4:
+			print("\n")
+			valor = input("Introduce el valor m: ")
+			m = int(valor)
+			phi_m =phi(m)
+			total_raices=phi(phi_m)
+			print(m," tiene ",total_raices, "posibles raíces primitivas")
+			print("\u03D5(",m,")=",phi_m)
 
-		if(len(raices) == 0):
-			print(m, "no tiene raíces")
+			raices = []
+			posible_raiz = 1
+			while len(raices) < total_raices and posible_raiz < m: # and i < total_raices:
+				while gcd(posible_raiz,m) != 1 and posible_raiz < m:
+					posible_raiz = posible_raiz+1
+				orden1 = orden(posible_raiz,m,phi_m)[0]
+				if phi_m==orden1:
+					print(posible_raiz, "es raíz primitiva ya que Ord",subscript(m),"(",posible_raiz,")=","\u03D5(",m,") = ",phi_m)
+					raices.append(posible_raiz)
+				posible_raiz = posible_raiz +1
+
+			if(len(raices) == 0):
+				print(m, "no tiene raíces")
+				#return
+			else:
+				print("Las raíces de ",m, "son:")
+				print(raices)
+
+			#for primer_raiz in raices:
+
+			#   for raiz in raices:
+					#print(raiz,m)
+			#       if (raiz*primer_raiz)%m == 1:
+			#           print("r=",(raiz*primer_raiz)%m)
+
+
+			#return
+		
+		elif opcion == 5:
+			print("\n")
+			valor1 = input("Introduce el valor a: ")
+			valor2 = input("Introduce el valor m: ")
+			valor3 = input("Introduce el valor g: ")
+			a = int(valor1)
+			m = int(valor2)
+			g = int(valor3)
+			#Add full operation
+			print("Ind",subscript(g),"(",a,") =",indice(a,m,g))
+		elif opcion == 6:
+			print("\n")
+			valor = input("Introduce el valor m: ")
+			m = int(valor)
+			print(residuo_cuadratico(m))
+		elif opcion == 7:
 			return
-		print("Las raíces de ",m, "son:")
-		print(raices)
-
-		for primer_raiz in raices:
-
-			for raiz in raices:
-				#print(raiz,m)
-				if (raiz*primer_raiz)%m == 1:
-					print("r=",(raiz*primer_raiz)%m)
-
-
-		return
-	
-	elif opcion == 5:
-		print("\n")
-		valor1 = input("Introduce el valor a: ")
-		valor2 = input("Introduce el valor m: ")
-		valor3 = input("Introduce el valor g: ")
-		a = int(valor1)
-		m = int(valor2)
-		g = int(valor3)
-		#Add full operation
-		print("Ind",subscript(g),"(",a,") =",indice(a,m,g))
-	elif opcion == 6:
-		print("\n")
-		valor = input("Introduce el valor m: ")
-		m = int(valor)
-		print(residuo_cuadratico(m))
-	elif opcion == 7:
-		return
-	elif opcion == 8:
-		return
-	else:
-		print("\n")
-		print("Gracias por usar este programa uwu")
-		return	
-
+		elif opcion == 8:
+			return
+		elif opcion == -1:
+			print("Error, entrada no válida.")
+		else:
+			print("\n")
+			print("Gracias por usar este programa uwu")
+			return  
 main()
