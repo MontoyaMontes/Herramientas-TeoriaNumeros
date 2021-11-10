@@ -19,15 +19,17 @@ V 1.4.1, modificado calculo de phi(n) y orden (ahora necesita pre calcular phi(m
 		phi(m) calculaba varias veces su valor.
 V 1.5 Agregado calculo de índices y limpieza de código.
 
-V 1.6 Agregado calculo de residuo cuadrático y mejora ligera en menú
+V 1.5.1 Agregado calculo de residuo cuadrático y mejora ligera en menú
+
+V 1.5.2 Mejorado menú
+
+V 1.6 Agregadas funciones de factorial y suma de cuadrados por fuerza bruta
 
 Por agregar: calculo gcd, lcd
 Cambiar idioma a inglés.
-Cambiar/mejorar menú de selección
-Cambiar doc
 Agregar comentarios
 agregar comprobación de residuo cuadrático (con a^(p-1/2) congr 1 mod m)
-agregar reeadme
+modularizar
 '''
 
 from math import gcd #Importamos la biblioteca gcd directa de python 
@@ -168,7 +170,6 @@ def check_operation(operation):
 		return int(operation)
 
 def menu():
-#	os.system('clear') # NOTA para windows tienes que cambiar clear por cls
 	print("Programa para hacer calculos de teoría de números:\n")
 	print("Lista de opciones:")
 	print("\t1) Calcular \u03D5(n)")  
@@ -178,6 +179,7 @@ def menu():
 	print("\t5) Calcular indice")
 	print("\t6) Calcular residuo cuadrático") 
 	print("\t7) Salir") 
+#os.system('clear') # NOTA para windows tienes que cambiar clear por cls
 
 
 '''
@@ -188,7 +190,7 @@ def main():
 
 	while True:
 		menu()
-		operacion = input("Ingrese el número de la operación a realizar:")
+		operacion = input("Ingrese el número de la operación a realizar: ")
 		opcion = check_operation(operacion)
 		if opcion == 1:
 			print("\n")
@@ -290,4 +292,14 @@ def main():
 			print("\n")
 			print("Gracias por usar este programa uwu")
 			return  
+'''
+p=5
+n=15
+print("n=",n)
+
+for x in range(1,n):
+	resid = (x**2)%n
+	print("residuo ",x,resid)
+'''
 main()
+
