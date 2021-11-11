@@ -90,6 +90,7 @@ def orden(a, m, phi_m):
 
 def indice(a,m,g):
 	k=1 #Cambiar por multiplicacion para que sea menos operaciones
+	#revisar funcion de paro
 	while 1:
 		if a == ((g**k)%m):
 			return k
@@ -117,8 +118,7 @@ def residuo_cuadratico_euler(m):
 			print(k,superscript(pot),"\u2261 1")
 			x.add(k)
 #   return (x)
-	print(x)        
-
+	print(x)
 
 def simbolo_legendre_gauss(a,p):
 	n=(p-1)//2
@@ -159,15 +159,10 @@ def suma_dos_cuadrados(a,n):
 			if (sqr_n**2)+ x**2 == n:
 				print("{}){}{}+{}{}={}".format(a,sqr_n,pot2,x,pot2,n))
 			x += 1 
-		sqr_n -= 1
-		#for x in xrange(1,10):
-			
+		sqr_n -= 1			
 
 def check_operation(operation):
-	if not(operation.isdigit()):
-		return -1
-	else:
-		return int(operation)
+	return -1 if not(operation.isdigit()) else int(operation)
 
 def menu():
 	print("Programa para hacer calculos de teoría de números:\n")
@@ -179,27 +174,22 @@ def menu():
 	print("\t5) Calcular indice")
 	print("\t6) Calcular residuo cuadrático") 
 	print("\t7) Salir") 
-#os.system('clear') # NOTA para windows tienes que cambiar clear por cls
-
 
 '''
-	############ Main.#################
+	############ Main #################
 '''
 def main():
-
 
 	while True:
 		menu()
 		operacion = input("Ingrese el número de la operación a realizar: ")
 		opcion = check_operation(operacion)
 		if opcion == 1:
-			print("\n")
 			valor_phi = input("Introduce el valor n: ")
 			n = int(valor_phi)
 			print(phi(n))
 			#return
 		elif opcion == 2:
-			print("\n")
 			valor1 = input("Introduce el valor a: ")
 			valor2 = input("Introduce el valor m: ")
 			a = int(valor1)
@@ -214,7 +204,6 @@ def main():
 			print("Ord",subscript(m),"(",a,")=",orden1)
 			#return
 		elif opcion == 3:
-			print("\n")
 			valor1 = input("Introduce el valor a: ")
 			valor2 = input("Introduce el valor m: ")
 			a = int(valor1)
@@ -231,7 +220,6 @@ def main():
 			print("No es ráiz primitiva")
 			#return
 		elif opcion == 4:
-			print("\n")
 			valor = input("Introduce el valor m: ")
 			m = int(valor)
 			phi_m =phi(m)
@@ -268,7 +256,6 @@ def main():
 			#return
 		
 		elif opcion == 5:
-			print("\n")
 			valor1 = input("Introduce el valor a: ")
 			valor2 = input("Introduce el valor m: ")
 			valor3 = input("Introduce el valor g: ")
@@ -278,28 +265,17 @@ def main():
 			#Add full operation
 			print("Ind",subscript(g),"(",a,") =",indice(a,m,g))
 		elif opcion == 6:
-			print("\n")
 			valor = input("Introduce el valor m: ")
 			m = int(valor)
 			print(residuo_cuadratico(m))
-		elif opcion == 7:
-			return
-		elif opcion == 8:
-			return
+		#elif opcion == 7:
+		#	return
+		#elif opcion == 8:
+		#	return
 		elif opcion == -1:
 			print("Error, entrada no válida.")
 		else:
-			print("\n")
-			print("Gracias por usar este programa uwu")
-			return  
-'''
-p=5
-n=15
-print("n=",n)
-
-for x in range(1,n):
-	resid = (x**2)%n
-	print("residuo ",x,resid)
-'''
+			print("Gracias por usar este programa.")
+			return
 main()
 
